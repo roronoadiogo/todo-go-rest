@@ -1,0 +1,10 @@
+# Ignore files and directories that are not needed in the Docker container
+.git
+.idea
+*.log
+*.tmp
+*.swp
+*.bak
+*.pyc
+*.pyo
+__pycache__
