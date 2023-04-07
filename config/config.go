@@ -8,42 +8,25 @@ import (
 	"go.uber.org/zap"
 )
 
-const loggerLevel = zap.InfoLevel
+const loggerLevel = zap.DebugLevel
 
 var logger *zap.SugaredLogger
 
-func init() {
+func InitializeLogger() *zap.Logger {
 	config := zap.NewProductionConfig()
 	config.Level.SetLevel(loggerLevel)
 
-	var err error
 	logger, err := config.Build()
 	if err != nil {
 		panic(err)
 	}
 
-	logger.Info("Getting the Enviroment definitions")
-
-	env := os.Getenv("APP_ENV")
-	if env == "" {
-		env = "dev"
-	}
-
-	err = godotenv.Load(fmt.Sprintf("config/.env.%s", env))
-
-	if err != nil {
-		logger.Error("Error in env params definitios, application should be stopped")
-		panic(err)
-	}
-
-	if err = loadEnv(); err != nil {
-		logger.Sugar().Errorw("Error loading environment variables", "error", err)
-		panic(err)
-	}
-
+	return logger
 }
 
-func loadEnv() error {
+func LoadEnv() error {
+
+	logger.Info("Getting the Enviroment definitions")
 
 	env := os.Getenv("APP_ENV")
 	if env == "" {
