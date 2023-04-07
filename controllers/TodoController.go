@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/roronoadiogo/todo-go-rest/services/impl"
@@ -11,7 +10,5 @@ import (
 func HandleGetTodoAll(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	todoImpl := &impl.TodoImpl{}
-
-	w.Write([]byte(fmt.Sprint(todoImpl.ListAllTodo())))
-	mapper.ParseToJson(w)
+	mapper.ParseToJson(w, todoImpl.ListAllTodo())
 }

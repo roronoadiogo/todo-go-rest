@@ -5,17 +5,17 @@ import (
 	"net/http"
 
 	"github.com/roronoadiogo/todo-go-rest/config"
+	"go.uber.org/zap/zapcore"
 )
 
 var logger = config.InitializeLogger()
 
-func ParseToJson(w http.ResponseWriter) {
+func ParseToJson(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(data)
 
-	resp, err := json.Marshal(w)
 	if err != nil {
-		logger.Sugar().Debugf("Error in the parse to Json: %s", err)
+		logger.Error("Failed in the parse of data: ",
+			zapcore.Field{Key: "error", Interface: data})
 	}
-
-	w.Write([]byte(resp))
 }
