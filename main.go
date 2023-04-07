@@ -15,7 +15,7 @@ var logger *zap.Logger = config.InitializeLogger()
 
 func init() {
 	logger.Info("Started Application Todo Go List")
-	config.LoadEnv()
+	config.LoadEnv(logger)
 }
 
 func main() {

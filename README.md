@@ -5,6 +5,7 @@ This project it's to understand the mainly tools used for language GoLang to API
 ## :wrench: Setup and Tools used
 
 - GoLang 1.20
+- Chi router
 - GoOrm
 - MigrationDB
 - GoDotEnv
