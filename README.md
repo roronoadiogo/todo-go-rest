@@ -25,6 +25,7 @@ This list does not complete yet, will increase with the time.
 
 ## :rocket: Using the project
 
+**With Docker**
 - Open a terminal in the directory root this project and run:
 ```console
 user@machine:~$ docker build -t todo-go-rest
@@ -33,6 +34,14 @@ user@machine:~$ docker build -t todo-go-rest
 ```console
 user@machine:~$ docker run --rm -it  todo-go-rest:latest
 ```
-- You will be able to see: **Hello Project - Todo Go Rest**
+- You will be able to see **a item TODO in Json**
+
+**With Docker compose**
+- Open a terminal in the directory root this project and run:
+```console
+user@machine:~$ docker compose up
+```
+
+The system will start the application and you can to access the: **localhost:3000/todo**
 
 This documentation it's not complete, I'm still working on this resource to automatization better
