@@ -13,6 +13,11 @@ func NewUseCaseTodo(repo repository.TodoRepository) ListTodoUseCase {
 	return ListTodoUseCase{repo: repo}
 }
 
-func (u *ListTodoUseCase) Execute() []model.Todo {
-	return u.repo.ListAll()
+func (u *ListTodoUseCase) Execute() ([]model.Todo, error) {
+
+	todos, err := u.repo.ListAll()
+	if err != nil {
+		return nil, err
+	}
+	return todos, nil
 }

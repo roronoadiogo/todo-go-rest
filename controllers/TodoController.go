@@ -10,5 +10,12 @@ import (
 
 func HandleGetTodoAll(w http.ResponseWriter, r *http.Request) {
 	u := usecases.NewUseCaseTodo(impl.TodoImpl{})
-	mapper.ParseToJson(w, u.Execute())
+
+	todos, err := u.Execute()
+	if err != nil {
+		http.Error(w, "Error getting todos in repository", http.StatusInternalServerError)
+		return
+	}
+
+	mapper.ParseToJson(w, todos)
 }
